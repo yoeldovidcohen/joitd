@@ -1,7 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { atom, useAtom } from "jotai";
 import { TodoList } from "./components/TodoList";
 import { AddItem } from "./components/AddItem";
 
