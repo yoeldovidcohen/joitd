@@ -6,7 +6,7 @@ export const TodoList = () => {
     const itemsList = useSelector(useCallback((state)=>state.todos.map((todo=>todo.id)),[]))
     return (
         <>
-        {itemsList.map(item=><TodoItem id={item}/>)}
+        {itemsList.map(item=><><TodoItem id={item}/><br/></>)}
         </>
     )
 }

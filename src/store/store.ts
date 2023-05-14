@@ -50,7 +50,7 @@ export const useDispatch = () => {
             ...prev,
             todos: prev.todos.map((todo) =>
               todo.id === action.id
-                ? { ...todo, compleated: !todo.completed }
+                ? { ...todo, completed: !todo.completed }
                 : todo
             ),
           }));

@@ -24,7 +24,6 @@ export const AddItem = () =>{
                     onChange={(e) => setTitle(e.target.value)} />
                 <button type="submit">submit</button>
             </form> 
-            <h2>hi</h2>
         </>
     );
 }
