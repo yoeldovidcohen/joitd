@@ -7,6 +7,7 @@ type Todo = {
   id: string;
   title: string;
   completed: boolean;
+  dueAt?: Date;
 };
 
 type State = {
@@ -14,7 +15,7 @@ type State = {
 };
 
 type Action =
-  | { type: "ADD_TODO"; id: string; title: string }
+  | { type: "ADD_TODO"; id: string; title: string; dueAt?: Date }
   | { type: "REMOVE_TODO"; id: string }
   | { type: "TOGGLE_TODO"; id: string };
 
@@ -35,7 +36,12 @@ export const useDispatch = () => {
             ...prev,
             todos: [
               ...prev.todos,
-              { id: action.id, title: action.title, completed: false },
+              {
+                id: action.id,
+                title: action.title,
+                completed: false,
+                dueAt: action.dueAt,
+              },
             ],
           }));
           break;
