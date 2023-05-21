@@ -6,14 +6,28 @@ import { nanoid } from "nanoid";
 
 export const AddItem = () => {
   const [title, setTitle] = useState("");
-  const [dueAt, setDueAt] = useState<string  | undefined>();
+  const [dueAt, setDueAt] = useState<string | undefined>();
   const dispatch = useDispatch();
   const add = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const id = nanoid();
     const itemTitle = title;
     setTitle("");
-    dispatch({ type: "ADD_TODO", id: id, title: itemTitle, dueAt: dueAt });
+    if (dueAt) {
+      const dueAtDate = new Date(dueAt);
+      dispatch({
+        type: "ADD_TODO",
+        id: id,
+        title: itemTitle,
+        dueAt: dueAtDate,
+      });
+    } else {
+      dispatch({
+        type: "ADD_TODO",
+        id: id,
+        title: itemTitle,
+      });
+    }
   };
   return (
     <>

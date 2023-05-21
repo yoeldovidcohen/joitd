@@ -18,7 +18,13 @@ export const TodoItem = ({ id }: { id: string }) => {
       <span style={{ textDecoration: item?.completed ? "line-through" : "" }}>
         {item?.title}
       </span>
-      {item?.dueAt && <span>{item.dueAt}</span>}
+      {item?.dueAt && <span>{item.dueAt.toString()}</span>}
+      {item?.dueAt && (
+        <>
+          <span>{item.dueAt.getDate()}</span>
+          <span>{item.dueAt.getTime()}</span>
+        </>
+      )}
       <button onClick={remove}>remove</button>
     </>
   );
