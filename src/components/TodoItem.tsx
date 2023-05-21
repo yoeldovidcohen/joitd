@@ -18,7 +18,7 @@ export const TodoItem = ({ id }: { id: string }) => {
       <span style={{ textDecoration: item?.completed ? "line-through" : "" }}>
         {item?.title}
       </span>
-      {item?.dueAt && <span>{item.dueAt.toISOString()}</span>}
+      {item?.dueAt && <span>{item.dueAt}</span>}
       <button onClick={remove}>remove</button>
     </>
   );

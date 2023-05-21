@@ -7,7 +7,7 @@ type Todo = {
   id: string;
   title: string;
   completed: boolean;
-  dueAt?: Date;
+  dueAt?: string;
 };
 
 type State = {
@@ -15,7 +15,7 @@ type State = {
 };
 
 type Action =
-  | { type: "ADD_TODO"; id: string; title: string; dueAt?: Date }
+  | { type: "ADD_TODO"; id: string; title: string; dueAt?: string}
   | { type: "REMOVE_TODO"; id: string }
   | { type: "TOGGLE_TODO"; id: string };
 

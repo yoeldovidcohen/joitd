@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 
 export const AddItem = () => {
   const [title, setTitle] = useState("");
-  const [dueAt, setDueAt] = useState<Date>();
+  const [dueAt, setDueAt] = useState<string  | undefined>();
   const dispatch = useDispatch();
   const add = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export const AddItem = () => {
         />
         <input
           type="datetime-local"
-          onChange={(e) => setDueAt(e.target.valueAsDate)}
+          onChange={(e) => e.target.value && setDueAt(e.target.value)}
         />
         <button type="submit">submit</button>
       </form>
