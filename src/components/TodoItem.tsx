@@ -6,6 +6,8 @@ export const TodoItem = ({ id }: { id: string }) => {
   const item = useSelector(
     useCallback((state) => state.todos.find((todo) => todo.id === id), [id])
   );
+  const itemDate = new Date(item?.dueAt ? item.dueAt : 0);
+
   const toggleCompleted = () => dispatch({ type: "TOGGLE_TODO", id });
   const remove = () => dispatch({ type: "REMOVE_TODO", id });
   return (
@@ -18,13 +20,19 @@ export const TodoItem = ({ id }: { id: string }) => {
       <span style={{ textDecoration: item?.completed ? "line-through" : "" }}>
         {item?.title}
       </span>
-      {item?.dueAt && <span>{item.dueAt.toString()}</span>}
       {item?.dueAt && (
+        <>
+          <span>{item.dueAt}</span>
+          <span>{itemDate.toLocaleDateString()}</span>
+          <span>{itemDate.toLocaleTimeString()}</span>
+        </>
+      )}
+      {/* {item?.dueAt && (
         <>
           <span>{item.dueAt.getDate()}</span>
           <span>{item.dueAt.getTime()}</span>
         </>
-      )}
+      )} */}
       <button onClick={remove}>remove</button>
     </>
   );
