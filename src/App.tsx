@@ -6,7 +6,7 @@ import { AddItem } from "./components/AddItem";
 function App() {
   return (
     <div>
-      <h1>hi</h1>
+      <h1 className="bg-red-500">Todo List</h1>
       <AddItem />
       <TodoList />
     </div>
