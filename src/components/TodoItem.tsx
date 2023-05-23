@@ -22,9 +22,24 @@ export const TodoItem = ({ id }: { id: string }) => {
       </span>
       {item?.dueAt && (
         <>
-          <span>{item.dueAt}</span>
+          {/* <span>{item.dueAt}</span> */}
           <span>{itemDate.toLocaleDateString()}</span>
           <span>{itemDate.toLocaleTimeString()}</span>
+        </>
+      )}
+      {
+        item?.dueAt && (Date.now() > itemDate.getTime()) &&
+        (
+          <>
+          <span>overdue
+
+          </span>
+          </>
+        )
+      }
+      {!item?.dueAt && (
+        <>
+          <span>{itemDate.toLocaleString()}</span>
         </>
       )}
       {/* {item?.dueAt && (
