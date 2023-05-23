@@ -1,12 +1,19 @@
-import { useCallback } from "react"
-import { useSelector } from "../store/store"
-import { TodoItem } from "./TodoItem"
+import { useCallback } from "react";
+import { useSelector } from "../store/store";
+import { TodoItem } from "./TodoItem";
 
 export const TodoList = () => {
-    const itemsList = useSelector(useCallback((state)=>state.todos.map((todo=>todo.id)),[]))
-    return (
+  const itemsList = useSelector(
+    useCallback((state) => state.todos.map((todo) => todo.id), [])
+  );
+  return (
+    <>
+      {itemsList.map((item) => (
         <>
-        {itemsList.map(item=><><TodoItem id={item}/><br/></>)}
+          <TodoItem id={item} />
+          <br />
         </>
-    )
-}
+      ))}
+    </>
+  );
+};

@@ -15,9 +15,10 @@ type State = {
 };
 
 type Action =
-  | { type: "ADD_TODO"; id: string; title: string; dueAt?: string}
+  | { type: "ADD_TODO"; id: string; title: string; dueAt?: string }
   | { type: "REMOVE_TODO"; id: string }
-  | { type: "TOGGLE_TODO"; id: string };
+  | { type: "TOGGLE_TODO"; id: string }
+  | { type: "EDIT_TODO"; id: string; title: string };
 
 const stateAtom = atomWithHash<State>("state", {
   todos: [],
@@ -58,6 +59,14 @@ export const useDispatch = () => {
               todo.id === action.id
                 ? { ...todo, completed: !todo.completed }
                 : todo
+            ),
+          }));
+          break;
+        case "EDIT_TODO":
+          setState((prev) => ({
+            ...prev,
+            todos: prev.todos.map((todo) =>
+              todo.id === action.id ? { ...todo, title: action.title } : todo
             ),
           }));
           break;
