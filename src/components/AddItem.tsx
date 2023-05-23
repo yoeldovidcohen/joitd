@@ -36,6 +36,7 @@ export const AddItem = () => {
           name="inputTitle"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
         />
         <input
           type="datetime-local"

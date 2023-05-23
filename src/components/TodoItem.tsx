@@ -14,42 +14,41 @@ export const TodoItem = ({ id }: { id: string }) => {
 
   const [isOverdue, setIsOverdue] = useState(false);
   useInterval(() => {
-      item?.dueAt && Date.now() > itemDate.getTime() && setIsOverdue(true);
+    item?.dueAt && Date.now() > itemDate.getTime() && setIsOverdue(true);
   }, 1000);
   return (
     <>
-      <input
-        type="checkbox"
-        checked={item?.completed}
-        onChange={toggleCompleted}
-      />
-      <span style={{ textDecoration: item?.completed ? "line-through" : "" }}>
-        {item?.title}
-      </span>
-      {item?.dueAt && (
-        <>
-          {/* <span>{item.dueAt}</span> */}
-          <span>{itemDate.toLocaleDateString()}</span>
-          <span>{itemDate.toLocaleTimeString()}</span>
-        </>
-      )}
-      {isOverdue && !item?.completed &&(
-        <>
-          <span>overdue</span>
-        </>
-      )}
-      {!item?.dueAt && (
-        <>
-          <span>{itemDate.toLocaleString()}</span>
-        </>
-      )}
-      {/* {item?.dueAt && (
+      <div className="flex items-center bg-red-200 basis-1 gap-4 	justify-center	">
+        <input
+          type="checkbox"
+          checked={item?.completed}
+          onChange={toggleCompleted}
+          
+        />
+        <p style={{ textDecoration: item?.completed ? "line-through" : "" }} className="block">
+          {item?.title}
+        </p>
+        {item?.dueAt && (
+          <>
+            {/* <span>{item.dueAt}</span> */}
+            <p className="block">{itemDate.toLocaleDateString()}</p>
+            <p className="block">{itemDate.toLocaleTimeString()}</p>
+          </>
+        )}
+        {isOverdue && !item?.completed && (
+          <>
+            <p>overdue</p>
+          </>
+        )}
+        
+        {/* {item?.dueAt && (
         <>
           <span>{item.dueAt.getDate()}</span>
           <span>{item.dueAt.getTime()}</span>
         </>
       )} */}
-      <button onClick={remove}>remove</button>
+        <button onClick={remove}>remove</button>
+      </div>
     </>
   );
 };
