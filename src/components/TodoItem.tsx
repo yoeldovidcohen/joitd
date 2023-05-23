@@ -22,7 +22,7 @@ export const TodoItem = ({ id }: { id: string }) => {
   }, 1000);
   return (
     <>
-      <div className="flex items-center bg-red-200 basis-1 gap-4 	justify-center	">
+      <div className="flex items-center bg-red-200 basis-1 gap-4 	justify-center flex-wrap">
         <input
           type="checkbox"
           checked={item?.completed}
