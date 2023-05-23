@@ -1,5 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "../store/store";
+import { useInterval } from "react-use";
 
 export const TodoItem = ({ id }: { id: string }) => {
   const dispatch = useDispatch();
@@ -10,6 +11,11 @@ export const TodoItem = ({ id }: { id: string }) => {
 
   const toggleCompleted = () => dispatch({ type: "TOGGLE_TODO", id });
   const remove = () => dispatch({ type: "REMOVE_TODO", id });
+
+  const [isOverdue, setIsOverdue] = useState(false);
+  useInterval(() => {
+      item?.dueAt && Date.now() > itemDate.getTime() && setIsOverdue(true);
+  }, 1000);
   return (
     <>
       <input
@@ -27,16 +33,11 @@ export const TodoItem = ({ id }: { id: string }) => {
           <span>{itemDate.toLocaleTimeString()}</span>
         </>
       )}
-      {
-        item?.dueAt && (Date.now() > itemDate.getTime()) &&
-        (
-          <>
-          <span>overdue
-
-          </span>
-          </>
-        )
-      }
+      {isOverdue && !item?.completed &&(
+        <>
+          <span>overdue</span>
+        </>
+      )}
       {!item?.dueAt && (
         <>
           <span>{itemDate.toLocaleString()}</span>
