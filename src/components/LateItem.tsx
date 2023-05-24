@@ -1,9 +1,8 @@
 import { useCallback, useState } from "react";
 import { useSelector } from "../store/store";
-import { useInterval } from "react-use";
+import { useInterval, useTitle } from "react-use";
 
 const LateItem = () => {
-  const [lateNum, setLateNum] = useState(0);
   const [now, setNow] = useState(0)
 
   const itemsList = useSelector(
@@ -16,6 +15,7 @@ const LateItem = () => {
   useInterval(() => {
     setNow(Date.now())
   }, 1000);
+//   useTitle(itemsList.length ? `${itemsList.length.toString()} todos` : "todos")
   return (
     <>
       <p>there are {itemsList.length ? itemsList.length.toString() : "no"} overdue items</p>
