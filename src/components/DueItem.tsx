@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useSelector } from "../store/store";
 import { useInterval, useTitle } from "react-use";
 
-const LateItem = () => {
+const DueItem = () => {
   const [now, setNow] = useState(0)
 
   const itemsList = useSelector(
@@ -23,4 +23,4 @@ const LateItem = () => {
   );
 };
 
-export default LateItem;
+export default DueItem;
