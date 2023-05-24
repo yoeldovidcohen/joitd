@@ -18,7 +18,7 @@ const LateItem = () => {
   }, 1000);
   return (
     <>
-      <p>there are {itemsList.length.toString()} overdue items</p>
+      <p>there are {itemsList.length ? itemsList.length.toString() : "no"} overdue items</p>
     </>
   );
 };

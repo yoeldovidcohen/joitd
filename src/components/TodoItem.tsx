@@ -87,7 +87,7 @@ export const TodoItem = ({ id }: { id: string }) => {
           <>
             {/* <span>{item.dueAt}</span> */}
             <p className="block">{itemDate.toLocaleDateString()}</p>
-            <p className="block">{itemDate.toLocaleTimeString()}</p>
+            <p className="block">{itemDate.toLocaleTimeString().slice(0, 5)}</p>
           </>
         )}
         {isOverdue && !item?.completed && (
