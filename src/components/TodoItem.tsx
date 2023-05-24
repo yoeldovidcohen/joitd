@@ -18,7 +18,7 @@ export const TodoItem = ({ id }: { id: string }) => {
   const [editMode, setEditMode] = useState(false);
   const [editState, setEditState] = useState("");
   useInterval(() => {
-    item?.dueAt && Date.now() > itemDate.getTime() && setIsOverdue(true);
+    item?.dueAt && Date.now() > item.dueAt && setIsOverdue(true);
   }, 1000);
   return (
     <>
