@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "../store/store";
-import { useInterval } from "react-use";
+import { useAudio, useInterval } from "react-use";
 
 export const TodoItem = ({ id }: { id: string }) => {
   const dispatch = useDispatch();
@@ -17,8 +17,16 @@ export const TodoItem = ({ id }: { id: string }) => {
   const [isOverdue, setIsOverdue] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editState, setEditState] = useState("");
+  const [audio, state, controls, ref] = useAudio({
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    autoPlay: true,
+  });
+  const [shouldPlay, setShouldPlay] = useState(false);
   useInterval(() => {
     item?.dueAt && Date.now() > item.dueAt && setIsOverdue(true);
+    item?.dueAt && Date.now() > item.dueAt && Date.now() - 10000 < item.dueAt
+      ? setShouldPlay(true)
+      : setShouldPlay(false);
   }, 1000);
   return (
     <>
@@ -93,6 +101,12 @@ export const TodoItem = ({ id }: { id: string }) => {
         {isOverdue && !item?.completed && (
           <>
             <p>overdue</p>
+          </>
+        )}
+        {shouldPlay && (
+          <>
+            {audio}
+            <p>alarm ringing</p>
           </>
         )}
 
