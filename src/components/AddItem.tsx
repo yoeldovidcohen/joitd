@@ -37,14 +37,15 @@ export const AddItem = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          className="bg-gray-200"
         />
         <input
           type="datetime-local"
           // onChange={(e) => e.target.value && setDueAt(new Date(e.target.value).getTime())}
-          onChange={(e)=> {
-            if(e.target.value) {
-              const inputTime = new Date(e.target.value)
-              setDueAt(inputTime.getTime())
+          onChange={(e) => {
+            if (e.target.value) {
+              const inputTime = new Date(e.target.value);
+              setDueAt(inputTime.getTime());
             }
           }}
         />

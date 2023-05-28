@@ -3,6 +3,7 @@ import "./App.css";
 import { TodoList } from "./components/TodoList";
 import { AddItem } from "./components/AddItem";
 import DueItem from "./components/DueItem";
+import { PlayAlarm } from "./components/PlayAlarm";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <DueItem />
       <AddItem />
       <TodoList />
+      <PlayAlarm />
     </div>
   );
 }
