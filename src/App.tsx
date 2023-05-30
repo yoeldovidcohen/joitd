@@ -4,6 +4,7 @@ import { TodoList } from "./components/TodoList";
 import { AddItem } from "./components/AddItem";
 import DueItem from "./components/DueItem";
 import { PlayAlarm } from "./components/PlayAlarm";
+import WebShare from "./components/WebShare";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <AddItem />
       <TodoList />
       <PlayAlarm />
+      <WebShare />
     </div>
   );
 }
