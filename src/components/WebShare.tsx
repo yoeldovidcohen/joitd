@@ -4,7 +4,7 @@ const WebShare = () => {
       <p>web share</p>
       <button
         onClick={() => {
-          if (navigator.share && navigator.canShare()) {
+          if (navigator.share) {
             navigator.share({ text: "hello" });
           }
         }}
