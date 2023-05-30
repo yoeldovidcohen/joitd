@@ -4,11 +4,15 @@ import { playingState } from "../store/playing";
 
 export const PlayAlarm = () => {
   const [shouldPlay, setShouldPlay] = useAtom(playingState);
+  const intervalAction = () => {
+    setShouldPlay(false);
+    controls.seek(0);
+  };
   const [audio, state, controls, ref] = useAudio({
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     autoPlay: true,
   });
-  useInterval(() => setShouldPlay(false), 11000);
+  useInterval(() => intervalAction(), 10000);
 
   return (
     <>
