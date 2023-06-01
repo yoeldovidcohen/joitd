@@ -9,7 +9,6 @@ import WebShare from "./components/WebShare";
 function App() {
   return (
     <div>
-      <h1 className="bg-red-500">Todo List</h1>
       <DueItem />
       <AddItem />
       <TodoList />
