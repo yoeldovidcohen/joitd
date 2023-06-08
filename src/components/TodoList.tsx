@@ -1,8 +1,13 @@
 import { useCallback } from "react";
 import { useSelector } from "../store/store";
 import { TodoItem } from "./TodoItem";
+import { add } from "date-fns";
+import { useAtom } from "jotai";
+import { datenum } from "../store/datenum";
 
 export const TodoList = () => {
+  const [dm, ] = useAtom(datenum);
+
   const itemsList = useSelector(
     useCallback(
       (state) =>
@@ -12,10 +17,11 @@ export const TodoList = () => {
               !todo.dueAt ||
               (todo.dueAt &&
                 new Date(todo.dueAt).toDateString() ===
-                new Date().toDateString())
+                  add(new Date(), { days: dm }).toDateString())
+              // new Date().toDateString()
           )
           .map((todo) => todo.id),
-      []
+      [dm]
     )
   );
   return (

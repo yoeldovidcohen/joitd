@@ -1,5 +1,13 @@
+import { useAtom } from "jotai";
+import { datenum } from "../store/datenum";
+import { add } from 'date-fns'
+
 const DateCome = () => {
-  const theDate = new Date();
+  const [dm, setDm] = useAtom(datenum);
+  // const theDate = new Date(new Date().setDate(new Date().getDate() + dm));
+  const theDate = add(new Date(), {days: dm})
+
+  // const theDate = new Date();
   const days = [
     "Sunday",
     "Monday",
@@ -34,6 +42,7 @@ const DateCome = () => {
           strokeWidth={1.5}
           stroke="currentColor"
           className="w-6 h-6 my-auto"
+          onClick={() => setDm(dm - 1)}
         >
           <path
             strokeLinecap="round"
@@ -63,6 +72,7 @@ const DateCome = () => {
           strokeWidth={1.5}
           stroke="currentColor"
           className="w-6 h-6 my-auto"
+          onClick={() => setDm(dm + 1)}
         >
           <path
             strokeLinecap="round"
