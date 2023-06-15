@@ -15,7 +15,7 @@ const DateCome = () => {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saterday",
+    "Saturday",
   ];
 
   const months = [
