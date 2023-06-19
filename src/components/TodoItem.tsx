@@ -20,18 +20,9 @@ export const TodoItem = ({ id }: { id: string }) => {
   const [isOverdue, setIsOverdue] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editState, setEditState] = useState("");
-  const [audio, state, controls, ref] = useAudio({
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    autoPlay: true,
-  });
-  const [shouldPlay, setShouldPlay] = useAtom(playingState);
+
   useInterval(() => {
     item?.dueAt && Date.now() > item.dueAt && setIsOverdue(true);
-    item?.dueAt &&
-      Date.now() > item.dueAt &&
-      Date.now() - 10000 < item.dueAt &&
-      setShouldPlay(true);
-    // : setShouldPlay(false);
   }, 1000);
   return (
     <>
@@ -59,6 +50,15 @@ export const TodoItem = ({ id }: { id: string }) => {
             required
           />
         )}
+
+        {item?.dueAt && (
+          <>
+            {/* <span>{item.dueAt}</span> */}
+            <p className="block">{itemDate.toLocaleDateString()}</p>
+            <p className="block">{itemDate.toLocaleTimeString().slice(0, 5)}</p>
+          </>
+        )}
+
         {!editMode && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -96,14 +96,6 @@ export const TodoItem = ({ id }: { id: string }) => {
               d="M4.5 12.75l6 6 9-13.5"
             />
           </svg>
-        )}
-
-        {item?.dueAt && (
-          <>
-            {/* <span>{item.dueAt}</span> */}
-            <p className="block">{itemDate.toLocaleDateString()}</p>
-            <p className="block">{itemDate.toLocaleTimeString().slice(0, 5)}</p>
-          </>
         )}
         {/* {isOverdue && !item?.completed && (
           <>
