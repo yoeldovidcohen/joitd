@@ -35,9 +35,8 @@ export const TodoItem = ({ id }: { id: string }) => {
         {!editMode && (
           <p
             // style={{ textDecoration: item?.completed ? "line-through" : "" }}
-            className={`block ${editMode ? "bg-green-200" : "bg-red-200"} ${
-              item?.completed ? "line-through" : ""
-            }`}
+            className={`block ${editMode ? "bg-green-200" : "bg-red-200"} ${item?.completed ? "line-through" : ""
+              }`}
           >
             {item?.title}
           </p>
@@ -51,11 +50,16 @@ export const TodoItem = ({ id }: { id: string }) => {
           />
         )}
 
-        {item?.dueAt && (
+        {!editMode && item?.dueAt && (
           <>
             {/* <span>{item.dueAt}</span> */}
             <p className="block">{itemDate.toLocaleDateString()}</p>
             <p className="block">{itemDate.toLocaleTimeString().slice(0, 5)}</p>
+          </>
+        )}
+        {editMode && (
+          <>
+            <input type="datetime-local" />
           </>
         )}
 
