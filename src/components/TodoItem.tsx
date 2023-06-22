@@ -13,13 +13,14 @@ export const TodoItem = ({ id }: { id: string }) => {
   const itemDate = new Date(item?.dueAt ? item.dueAt : 0);
 
   const toggleCompleted = () => dispatch({ type: "TOGGLE_TODO", id });
-  const changeTodoItem = (title: string) =>
-    dispatch({ type: "EDIT_TODO", title: title, id });
+  const changeTodoItem = (title?: string, dueAt?: number) =>
+    dispatch({ type: "EDIT_TODO", id, title: title, dueAt: dueAt });
   const remove = () => dispatch({ type: "REMOVE_TODO", id });
 
   const [isOverdue, setIsOverdue] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editState, setEditState] = useState("");
+  const [editDateState, setEditDateState] = useState(0);
 
   useInterval(() => {
     item?.dueAt && Date.now() > item.dueAt && setIsOverdue(true);
@@ -35,8 +36,9 @@ export const TodoItem = ({ id }: { id: string }) => {
         {!editMode && (
           <p
             // style={{ textDecoration: item?.completed ? "line-through" : "" }}
-            className={`block ${editMode ? "bg-green-200" : "bg-red-200"} ${item?.completed ? "line-through" : ""
-              }`}
+            className={`block ${editMode ? "bg-green-200" : "bg-red-200"} ${
+              item?.completed ? "line-through" : ""
+            }`}
           >
             {item?.title}
           </p>
@@ -59,7 +61,17 @@ export const TodoItem = ({ id }: { id: string }) => {
         )}
         {editMode && (
           <>
-            <input type="datetime-local" />
+            <input
+              type="datetime-local"
+              // onChange={(e) => e.target.value && setDueAt(new Date(e.target.value).getTime())}
+              onChange={(e) => {
+                if (e.target.value) {
+                  const inputTime = new Date(e.target.value);
+                  setEditDateState(inputTime.getTime());
+                }
+              }}
+              value={itemDate.toISOString().slice(0,-1)}
+            />
           </>
         )}
 
@@ -90,7 +102,7 @@ export const TodoItem = ({ id }: { id: string }) => {
             className="w-6 h-6"
             onClick={() => {
               setEditMode(false);
-              changeTodoItem(editState);
+              changeTodoItem(editState, editDateState);
               setEditState("");
             }}
           >
