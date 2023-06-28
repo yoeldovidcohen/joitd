@@ -1,8 +1,6 @@
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "../store/store";
-import { useAudio, useInterval } from "react-use";
-import { playingState } from "../store/playing";
-import { useAtom } from "jotai";
+import { useInterval } from "react-use";
 import FaceCome from "./FaceCome";
 
 export const TodoItem = ({ id }: { id: string }) => {
@@ -27,19 +25,14 @@ export const TodoItem = ({ id }: { id: string }) => {
   }, 1000);
   return (
     <>
-      <div className="flex items-center bg-red-200 basis-1 gap-4 	justify-center flex-wrap">
+      <div className="flex items-center basis-1 gap-4 	justify-center flex-wrap">
         <input
           type="checkbox"
           checked={item?.completed}
           onChange={toggleCompleted}
         />
         {!editMode && (
-          <p
-            // style={{ textDecoration: item?.completed ? "line-through" : "" }}
-            className={`block ${editMode ? "bg-green-200" : "bg-red-200"} ${
-              item?.completed ? "line-through" : ""
-            }`}
-          >
+          <p className={`block ${item?.completed ? "line-through" : ""}`}>
             {item?.title}
           </p>
         )}
@@ -70,7 +63,7 @@ export const TodoItem = ({ id }: { id: string }) => {
                   setEditDateState(inputTime.getTime());
                 }
               }}
-              value={itemDate.toISOString().slice(0,-1)}
+              value={itemDate.toISOString().slice(0, -1)}
             />
           </>
         )}
@@ -113,19 +106,6 @@ export const TodoItem = ({ id }: { id: string }) => {
             />
           </svg>
         )}
-        {/* {isOverdue && !item?.completed && (
-          <>
-            <p>overdue</p>
-          </>
-        )} */}
-
-        {/* {item?.dueAt && (
-        <>
-          <span>{item.dueAt.getDate()}</span>
-          <span>{item.dueAt.getTime()}</span>
-        </>
-      )} */}
-        {/* <button onClick={remove}>remove</button> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

@@ -1,13 +1,13 @@
 import { useLocation } from "react-use";
 
-const WebShare =  () => {
+const WebShare = () => {
   const location = useLocation();
   //
   const shareUrl = async () => {
     try {
       await navigator.share({ url: location.href });
     } catch {
-      console.log("err")
+      console.log("err");
     }
   };
   let canShare = false;
@@ -18,10 +18,14 @@ const WebShare =  () => {
   // const canShare =  navigator.canShare({text:"hello"})
   return (
     <>
-      <p>web share</p>
-      {canShare && <button onClick={shareUrl}>share</button>}
-
-      <p>{canShare ? "can" : "can't"} share</p>
+      <div className="flex flex-col place-items-center">
+        <button
+          className="bg-gray-500 enabled:hover:bg-gray-700 disabled:bg-gray-300 text-white font-bold py-2 px-4 rounded-full"
+          disabled={!canShare}
+        >
+          share
+        </button>
+      </div>
     </>
   );
 };

@@ -30,7 +30,10 @@ export const AddItem = () => {
   };
   return (
     <>
-      <form onSubmit={add}>
+      <form
+        onSubmit={add}
+        className="min-h-[10vh] flex justify-center items-center basis-1 gap-4 flex-wrap"
+      >
         <input
           type="text"
           name="inputTitle"

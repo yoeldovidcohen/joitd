@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { datenum } from "../store/datenum";
 
 export const TodoList = () => {
-  const [dm, ] = useAtom(datenum);
+  const [dm] = useAtom(datenum);
 
   const itemsList = useSelector(
     useCallback(
@@ -18,7 +18,7 @@ export const TodoList = () => {
               (todo.dueAt &&
                 new Date(todo.dueAt).toDateString() ===
                   add(new Date(), { days: dm }).toDateString())
-              // new Date().toDateString()
+            // new Date().toDateString()
           )
           .map((todo) => todo.id),
       [dm]
@@ -26,12 +26,14 @@ export const TodoList = () => {
   );
   return (
     <>
-      {itemsList.map((item) => (
-        <>
-          <TodoItem id={item} key={item} />
-          <br />
-        </>
-      ))}
+      <div className="min-h-[40vh]">
+        {itemsList.map((item) => (
+          <>
+            <TodoItem id={item} key={item} />
+            <br />
+          </>
+        ))}
+      </div>
     </>
   );
 };

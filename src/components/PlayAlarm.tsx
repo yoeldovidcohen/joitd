@@ -40,12 +40,8 @@ export const PlayAlarm = () => {
 
   return (
     <>
-      <p>alarm</p>
       {playList && dateTime.getSeconds() > 0 && dateTime.getSeconds() < 10 && (
-        <>
-          {audio}
-          <p>alarm ringing</p>
-        </>
+        <>{audio}</>
       )}
     </>
   );
