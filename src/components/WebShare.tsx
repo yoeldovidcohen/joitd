@@ -13,7 +13,7 @@ const WebShare = () => {
   let canShare = false;
   try {
     canShare = navigator.canShare({ text: "hello" });
-  } catch (error) {}
+  } catch (error) { }
 
   // const canShare =  navigator.canShare({text:"hello"})
   return (
@@ -22,6 +22,7 @@ const WebShare = () => {
         <button
           className="bg-gray-500 enabled:hover:bg-gray-700 disabled:bg-gray-300 text-white font-bold py-2 px-4 rounded-full"
           disabled={!canShare}
+          onClick={shareUrl}
         >
           share
         </button>
